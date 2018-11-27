@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 84.0, 129.0, 786.0, 696.0 ],
+		"rect" : [ 84.0, 129.0, 634.0, 642.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,18 @@
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-5",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 94.0, 328.0, 99.0, 22.0 ],
+					"text" : "full_source_code"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"data" : 					{
 						"clips" : [ 							{
 								"absolutepath" : "cherokee.aif",
@@ -46,21 +58,21 @@
 								"filekind" : "audiofile",
 								"loop" : 1,
 								"content_state" : 								{
+									"timestretch" : [ 0 ],
+									"mode" : [ "basic" ],
+									"followglobaltempo" : [ 0 ],
 									"pitchshift" : [ 1.0 ],
+									"formantcorrection" : [ 0 ],
+									"pitchcorrection" : [ 0 ],
 									"originallengthms" : [ 0.0 ],
+									"speed" : [ 1.0 ],
 									"originallength" : [ 0.0, "ticks" ],
-									"play" : [ 0 ],
+									"formant" : [ 1.0 ],
 									"quality" : [ "basic" ],
 									"originaltempo" : [ 120.0 ],
-									"formant" : [ 1.0 ],
-									"basictuning" : [ 440 ],
-									"speed" : [ 1.0 ],
-									"mode" : [ "basic" ],
-									"pitchcorrection" : [ 0 ],
-									"timestretch" : [ 0 ],
-									"followglobaltempo" : [ 0 ],
 									"slurtime" : [ 0.0 ],
-									"formantcorrection" : [ 0 ]
+									"basictuning" : [ 440 ],
+									"play" : [ 0 ]
 								}
 
 							}
@@ -114,14 +126,14 @@
 					"patching_rect" : [ 205.0, 446.0, 48.0, 136.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_mmax" : 6.0,
+							"parameter_initial" : [ -24 ],
+							"parameter_shortname" : "live.gain~",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 4,
 							"parameter_mmin" : -70.0,
 							"parameter_longname" : "live.gain~",
-							"parameter_initial_enable" : 1,
-							"parameter_mmax" : 6.0,
-							"parameter_initial" : [ -24 ],
-							"parameter_shortname" : "live.gain~"
+							"parameter_initial_enable" : 1
 						}
 
 					}
@@ -195,7 +207,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 24.0, 101.0, 550.0, 20.0 ],
-					"presentation_linecount" : 2,
 					"text" : "https://web.archive.org/web/20171218170545/http://www.musicdsp.org:80/archive.php?classid=4#114"
 				}
 
@@ -230,7 +241,7 @@
 						}
 ,
 						"classnamespace" : "dsp.gen",
-						"rect" : [ 721.0, 529.0, 600.0, 450.0 ],
+						"rect" : [ 274.0, 390.0, 600.0, 450.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -384,7 +395,7 @@
  ]
 									}
 ,
-									"patching_rect" : [ 248.0, 32.5, 105.0, 22.0 ],
+									"patching_rect" : [ 112.0, 48.0, 105.0, 22.0 ],
 									"text" : "gen @title smooth"
 								}
 
@@ -396,7 +407,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 50.0, 308.0, 29.5, 22.0 ],
+									"patching_rect" : [ 50.0, 342.0, 81.0, 22.0 ],
 									"text" : "/"
 								}
 
@@ -408,7 +419,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 248.0, -1.0, 247.0, 22.0 ],
+									"patching_rect" : [ 112.0, 14.5, 247.0, 22.0 ],
 									"text" : "param amount @default 1 @min 1 @max 10"
 								}
 
@@ -420,7 +431,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 50.0, 56.0, 29.5, 22.0 ],
+									"patching_rect" : [ 50.0, 90.0, 29.5, 22.0 ],
 									"text" : "*"
 								}
 
@@ -432,14 +443,14 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 50.0, 14.0, 28.0, 22.0 ],
+									"patching_rect" : [ 50.0, 14.5, 28.0, 22.0 ],
 									"text" : "in 1"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"code" : "x = in1 * 0.686306;\na = 1 + exp (sqrt (abs (x)) * -0.75);\nout1 = (exp (x) - exp (-x * a)) / (exp (x) + exp (-x));",
+									"code" : "x = in1 * 0.686306;\na = 1 + exp (sqrt (abs (x)) * -0.75) + 74;\nout1 = (exp (x) - exp (-x * a)) / (exp (x) + exp (-x));",
 									"fontface" : 0,
 									"fontname" : "Menlo",
 									"fontsize" : 12.0,
@@ -448,7 +459,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 50.0, 84.0, 493.0, 202.0 ]
+									"patching_rect" : [ 50.0, 118.0, 493.0, 202.0 ]
 								}
 
 							}
@@ -458,7 +469,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 50.0, 354.0, 35.0, 22.0 ],
+									"patching_rect" : [ 50.0, 388.0, 35.0, 22.0 ],
 									"text" : "out 1"
 								}
 
@@ -602,6 +613,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-28", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-1", 0 ],
+					"source" : [ "obj-5", 0 ]
 				}
 
 			}
