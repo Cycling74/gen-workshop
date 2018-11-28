@@ -1,6 +1,9 @@
 [multiplying-signals]: 			../img/multiplying-signals.png
 [simplistic-karplus]: 			../img/simplistic-karplus.png
 [simplistic-karplus-parent]: 	../img/simplistic-karplus-parent.png
+[debugging-karplus]:	 		../img/debugging-karplus.png
+[karplus-keyboard]:	 			../img/karplus-keyboard.png
+[mc.karplus]:					../img/mc.karplus.png
 [amp-mult]:			 			../img/amp-mult.png
 [onepole-filter]:			 	../img/onepole-filter.png
 [setparam]:			 			../img/setparam.png
@@ -30,6 +33,18 @@ To make this patcher play sound, we can use a noise burst provided by the parent
 
 ![The parent patcher supplies a noise burst][simplistic-karplus-parent]
 
+One thing that you have to contend with when working with gen~, is that debugging can be slightly more difficult than in Max. We have no UI objects in gen~, and there are no messages passing between objects either. So, to debug, it can be useful to add in another outlet, which we can use to observe the state of intermediate signals.
+
+![Picture of two patchers: a gen~ subpatcher and a parent patcher. The subpatcher has an outlet labeled "out 2", which connects to a signal controling the length of the delay line. That signal is observed in the parent patcher using a number~ object. This illustrates using extra outlets to debug a gen~ subpatcher][debugging-karplus]
+
+If we really want to make this sound cool, we can add a little keyboard to make it rad.
+
+![Picture of a kslider connected to the Karplus-Strong gen~ patcher that we've been working on, which lets us control the length of the delay line in a proportional way][karplus-keyboard]
+
+Now, a fun thing that we can do with this in Max 8 is easily make this multichannel with mc.gen~. If we have time we can look at how to do this: it's pretty fun.
+
+![Picture of the above patcher, adapted for multichannel use][mc.karplus]
+
 ## One-pole filter
 
 Another very easy thing to build in gen~ is a simple one-pole filter. We have to do a bit of math to convert from an expression of cutoff frequency in hertz to one appropriate for our filter. With this done, it's also very easy to get the highpass filter out.
@@ -58,3 +73,5 @@ Great, now we're ready to create a new top-level patcher that uses this gen abst
 ![Picture of a top-level patcher, using a gen~ object that processes a two sound channels in stereo][stereo-filter]
 
 If we want to, we can now export this effect again. It's much easier this time around—all we have to do is export the code and rebuild the Xcode project. Now host applications can use this stereo effect.
+
+## What the hell else?
