@@ -74,4 +74,4 @@ Great, now we're ready to create a new top-level patcher that uses this gen abst
 
 If we want to, we can now export this effect again. It's much easier this time around—all we have to do is export the code and rebuild the Xcode project. Now host applications can use this stereo effect.
 
-## What the hell else?
+## Maybe this is where the Codebox-initialization thing goes?
