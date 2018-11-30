@@ -26,13 +26,21 @@ calculateSample(inputLeft, inputRight, window, playing, position, speed, waiting
 	
 	for (i = 0; i < size; i += 1) {
 		isPlaying = peek(playing, i);
+		if (isPlaying) {
+			playingCount += 1;
+		}
+	}
+
+	for (i = 0; i < size; i += 1) {
+		isPlaying = peek(playing, i);
 		timeToWait = peek(waiting, i);
 
 		// start playing this thing
-		if (!isPlaying && timeToWait <= 0 && playingCount < 2) {
+		if (!isPlaying && timeToWait <= 0 && playingCount < 3) {
 			poke(playing, 1, i);	// store that we are playing this instance
 			pos = 0;
-			poke(waiting, window_len + SAMPLERATE * (noise()+5), i);	// calculate random extra time to wait
+			timeToWait = window_len + SAMPLERATE * (noise()+1) * 4;
+			poke(waiting, timeToWait, i);	// calculate random extra time to wait
 			normRand = (noise() + 1) * 0.5;
 			speedRatio = normRand * normRand + 0.1;
 			panRatio = normRand;
@@ -56,7 +64,7 @@ calculateSample(inputLeft, inputRight, window, playing, position, speed, waiting
 			}
 		}
 
-		poke(waiting, max(peek(waiting, i) - 1, 0), i);
+		poke(waiting, max(timeToWait - 1, 0), i);
 	}
 	
 	return sampLeft, sampRight;
