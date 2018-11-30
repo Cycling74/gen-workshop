@@ -1,7 +1,9 @@
 // functions
-initWindow(window, isInitialized)
+initWindow(window)
 {
-	if (!isInitialized) {
+	History isIinitialized;
+
+	if (!isIinitialized) {
 		len = dim(window);
 
 		// iteration
@@ -10,7 +12,8 @@ initWindow(window, isInitialized)
 			poke(window, 0.42 - 0.5*cos(TWOPI * tmp) + 0.08*cos(TWOPI*2* tmp), i); // write sample in buffer
 		}
 	}
-	return 1;
+	isIinitialized = 1;
+	return isIinitialized; 
 }
 
 calculateSample(inputLeft, inputRight, window, playing, position, speed, waiting, pan, size)

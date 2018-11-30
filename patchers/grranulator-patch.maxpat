@@ -997,7 +997,7 @@
 							}
 , 							{
 								"box" : 								{
-									"code" : "require(\"grranulator\");\r\n\r\nBuffer window();\r\nHistory initialized(0);\t// \"static\" variable (the value persists)\r\nBuffer playing();\nBuffer position();\nBuffer speed();\nBuffer waiting();\nBuffer pan();\n\r\ninitialized = initWindow(window, initialized);\r\n\r\nsampL, sampR = calculateSample(in1, in2, window, playing, position, speed, waiting, pan, dim(playing));\r\nout1 = sampL;\r\nout2 = sampR;",
+									"code" : "require(\"grranulator\");\r\n\r\nBuffer window();\r\nBuffer playing();\nBuffer position();\nBuffer speed();\nBuffer waiting();\nBuffer pan();\n\r\ninitWindow(window);\r\n\r\nsampL, sampR = calculateSample(in1, in2, window, playing, position, speed, waiting, pan, dim(playing));\r\nout1 = sampL;\r\nout2 = sampR;",
 									"fontface" : 0,
 									"fontname" : "Menlo",
 									"fontsize" : 12.0,
@@ -1068,21 +1068,21 @@
 								"filekind" : "audiofile",
 								"loop" : 1,
 								"content_state" : 								{
-									"slurtime" : [ 0.0 ],
-									"timestretch" : [ 0 ],
-									"followglobaltempo" : [ 0 ],
-									"mode" : [ "basic" ],
-									"pitchcorrection" : [ 0 ],
-									"formant" : [ 1.0 ],
 									"formantcorrection" : [ 0 ],
-									"pitchshift" : [ 1.0 ],
-									"play" : [ 0 ],
-									"originallength" : [ 0.0, "ticks" ],
-									"originallengthms" : [ 0.0 ],
-									"originaltempo" : [ 120.0 ],
+									"formant" : [ 1.0 ],
 									"speed" : [ 1.0 ],
+									"pitchcorrection" : [ 0 ],
+									"originallength" : [ 0.0, "ticks" ],
+									"pitchshift" : [ 1.0 ],
+									"quality" : [ "basic" ],
+									"originaltempo" : [ 120.0 ],
 									"basictuning" : [ 440 ],
-									"quality" : [ "basic" ]
+									"originallengthms" : [ 0.0 ],
+									"timestretch" : [ 0 ],
+									"mode" : [ "basic" ],
+									"play" : [ 0 ],
+									"followglobaltempo" : [ 0 ],
+									"slurtime" : [ 0.0 ]
 								}
 
 							}
