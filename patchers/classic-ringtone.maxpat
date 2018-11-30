@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 76.0, 122.0, 588.0, 363.0 ],
+		"rect" : [ 77.0, 96.0, 588.0, 363.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -131,7 +131,7 @@
 						}
 ,
 						"classnamespace" : "dsp.gen",
-						"rect" : [ 603.0, 84.0, 823.0, 817.0 ],
+						"rect" : [ 603.0, 84.0, 823.0, 736.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -172,7 +172,7 @@
 							}
 , 							{
 								"box" : 								{
-									"code" : "calculateNextNote(pitches, durations, index, len)\r\n{\r\n\tpitch = peek(pitches, index % len);\r\n\tfrequency = mtof(pitch);\r\n\tduration = peek(durations, index);\r\n\tdurationInSamples = duration * (SAMPLERATE / 7);\r\n\treturn frequency, durationInSamples;\r\n}\r\n\r\nBuffer pitches();\r\nBuffer durations();\r\nHistory isPlaying();\r\nHistory freq;\r\nHistory noteDuration;\r\nHistory index();\r\n\r\nsequenceLength = dim(pitches);\r\n\r\nsamp = 0;\r\n\r\n// wanna start the sequence?\r\nif (in1) {\r\n\tisPlaying = 1;\r\n\tindex = 0;\r\n\tfreq, noteDuration = calculateNextNote(pitches, durations, index, sequenceLength);\r\n}\r\n\r\nif (isPlaying && noteDuration > 0) {\r\n\tsamp = cycle(freq);\r\n\tnoteDuration -= 1;\r\n\t\r\n\tif (noteDuration <= 0) {\r\n\t\tindex += 1;\r\n\t\t\r\n\t\tif (index >= sequenceLength) {\r\n\t\t\tisPlaying = 0;\r\n\t\t} else {\r\n\t\t\tfreq, noteDuration = calculateNextNote(pitches, durations, index, sequenceLength);\r\n\t\t}\r\n\t}\r\n}\r\n\r\nout1 = samp;",
+									"code" : "calculateNextNote(pitches, durations, index, len)\r\n{\r\n\tpitch = peek(pitches, index % len);\r\n\tfrequency = mtof(pitch);\r\n\tduration = peek(durations, index);\r\n\tdurationInSamples = duration * (SAMPLERATE / 7);\r\n\treturn frequency, durationInSamples;\r\n}\r\n\r\nBuffer pitches();\r\nBuffer durations();\r\nHistory isPlaying();\t// are we currently playing\r\nHistory index();\t\t// position in the sequence\r\nHistory freq;\t\t\t// current frequency\r\nHistory noteDuration;\t// how many samples left to play in this note\r\nParam speed(1);\r\n\r\nsequenceLength = dim(pitches);\r\n\r\nsamp = 0;\r\n\r\n// wanna start the sequence?\r\nif (in1) {\r\n\tisPlaying = 1;\r\n\tindex = 0;\t// let's start at the beginning\r\n\tfreq, noteDuration = calculateNextNote(pitches, durations, index, sequenceLength);\r\n}\r\n\r\nif (isPlaying && noteDuration > 0) {\r\n\tsamp = cycle(freq);\r\n\tnoteDuration -= 1;\r\n\t\r\n\tif (noteDuration <= 0) {\r\n\t\tindex += 1;\r\n\t\t\r\n\t\tif (index >= sequenceLength) {\r\n\t\t\tisPlaying = 0;\r\n\t\t} else {\r\n\t\t\tfreq, noteDuration = calculateNextNote(pitches, durations, index, sequenceLength);\r\n\t\t}\r\n\t}\r\n}\r\n\r\nout1 = samp;",
 									"fontface" : 0,
 									"fontname" : "Menlo",
 									"fontsize" : 12.0,
