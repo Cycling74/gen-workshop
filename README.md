@@ -12,8 +12,8 @@ Materials for the gen~ workshop and presentation at GRAME
 In order to build a VST/AU using gen~, a little bit of finesse is required. We make use of the Projucer in order to create an XCode project that builds the appropriate plugin.
 
 1. Download the Projucer (see https://juce.com).
-2. Copy the folder named JUCEPluginTemplate. Copy this folder any time you would like to build a new VST/AU using gen~. You may rename this folder.
-3. Open the file C74ProjucerGenPlugin.jucer.
+2. In this directory, you will see a folder named JUCEPluginTemplate. Copy this folder any time you would like to build a new VST/AU using gen~. You should rename this folder.
+3. Within the copied folder, open the file C74ProjucerGenPlugin.jucer.
 4. Navigate to the Project Settings.
 
 ![Project Settings Image][001-project-settings]
