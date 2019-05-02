@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 0,
-			"revision" : 2,
+			"revision" : 6,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -58,21 +58,21 @@
 								"filekind" : "audiofile",
 								"loop" : 1,
 								"content_state" : 								{
+									"basictuning" : [ 440 ],
+									"slurtime" : [ 0.0 ],
+									"speed" : [ 1.0 ],
+									"play" : [ 0 ],
 									"timestretch" : [ 0 ],
-									"mode" : [ "basic" ],
+									"pitchcorrection" : [ 0 ],
 									"followglobaltempo" : [ 0 ],
 									"pitchshift" : [ 1.0 ],
 									"formantcorrection" : [ 0 ],
-									"pitchcorrection" : [ 0 ],
 									"originallengthms" : [ 0.0 ],
-									"speed" : [ 1.0 ],
 									"originallength" : [ 0.0, "ticks" ],
+									"mode" : [ "basic" ],
 									"formant" : [ 1.0 ],
 									"quality" : [ "basic" ],
-									"originaltempo" : [ 120.0 ],
-									"slurtime" : [ 0.0 ],
-									"basictuning" : [ 440 ],
-									"play" : [ 0 ]
+									"originaltempo" : [ 120.0 ]
 								}
 
 							}
@@ -126,14 +126,14 @@
 					"patching_rect" : [ 205.0, 446.0, 48.0, 136.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_mmax" : 6.0,
-							"parameter_initial" : [ -24 ],
-							"parameter_shortname" : "live.gain~",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 4,
 							"parameter_mmin" : -70.0,
 							"parameter_longname" : "live.gain~",
-							"parameter_initial_enable" : 1
+							"parameter_initial_enable" : 1,
+							"parameter_mmax" : 6.0,
+							"parameter_initial" : [ -24 ],
+							"parameter_shortname" : "live.gain~"
 						}
 
 					}
@@ -235,7 +235,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 2,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -280,7 +280,7 @@
 										"appversion" : 										{
 											"major" : 8,
 											"minor" : 0,
-											"revision" : 2,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -450,7 +450,7 @@
 							}
 , 							{
 								"box" : 								{
-									"code" : "x = in1 * 0.686306;\na = 1 + exp (sqrt (abs (x)) * -0.75) + 74;\nout1 = (exp (x) - exp (-x * a)) / (exp (x) + exp (-x));",
+									"code" : "x = in1 * 0.686306;\na = 1 + exp (sqrt (abs (x)) * -0.75);\nout1 = (exp (x) - exp (-x * a)) / (exp (x) + exp (-x));",
 									"fontface" : 0,
 									"fontname" : "Menlo",
 									"fontsize" : 12.0,
