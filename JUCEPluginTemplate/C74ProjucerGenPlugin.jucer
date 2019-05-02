@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="lF5bgh" name="JUCEPluginTemplate" projectType="audioplug"
-              jucerVersion="5.4.1" pluginCode="Code" pluginManufacturerCode="Manf">
+              jucerVersion="5.4.3" pluginCode="Code" pluginManufacturerCode="Manf"
+              pluginFormats="buildAU,buildVST,buildVST3">
   <MAINGROUP id="wX8pJq" name="JUCEPluginTemplate">
     <GROUP id="{B910CDF0-679B-2473-242D-8FBFD16A4C63}" name="Source">
       <GROUP id="{326E9709-5819-B22B-9234-C9595111C760}" name="gen_dsp">
