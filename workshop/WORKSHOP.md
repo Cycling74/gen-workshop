@@ -10,7 +10,7 @@
 [stereo-filter]:				../img/stereo-filter.png
 
 # Workshop
-Hi. In this workshop, EJ and I are going to show you how to use gen~ in the context of Max. We'll also cover using gen~ to export code from Max, and how to use JUCE to run that code in a VST or Audio Unit.
+Hi. In this workshop, we'll look at how to use gen~ in the context of Max. We'll also cover using gen~ to export code from Max, and how to use JUCE to run that code in a VST or Audio Unit.
 
 ## Getting started
 Getting started is super easy. All you need to do is create a gen~ object. This is just like a patcher object, in that double-clicking on the object takes you to a subpatch. Here though, we're in the gen-dsp context, which has a different set of objects from regular Max. So, let's start with something very simple: multiplying two signals together.

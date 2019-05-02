@@ -17,7 +17,7 @@ We will be using JUCE to wrap our exported gen~ code, so there are some quick st
 
 Now, if you want to be able to build VSTs as opposed to VST3 or Audio Units, there are a couple more steps. I recommend going through these steps as, from my experience, the most convenient plugin format to work with is the legacy VST2 format.
 
-2. Download this older, special version of the VST SDK. This package has been altered slightly to build correctly with JUCE. `<Link here>`. Once you've downloaded this SDK, unzip it.
+2. Download this older, special version of the VST SDK. This package has been altered slightly to build correctly with JUCE. https://cycling74-expo.s3.amazonaws.com/VST_SDK_Special.zip. Once you've downloaded this SDK, unzip it.
 
 3. Open up the Projucer. In the application menu on the top left, open up Global Paths.
 
@@ -53,7 +53,7 @@ In order to build a VST/AU using gen~, a little bit of finesse is required. We m
 
 8. Make whatever kind of gen~ patcher your heart desires, according to normal gen~ usage.
 
-9. Export the gen code. Don't change the _exportname_ attribute. Be sure to export it to the Source folder of your new JUCE project. This where the JUCE project expects it to be (the header search path is configured to look for headers here).
+9. Export the gen code. Don't change the _exportname_ attribute. Also don't change the `@title` attribute, as this will change the name of the exported file. Be sure to export it to the Source folder of your new JUCE project. This where the JUCE project expects it to be (the header search path is configured to look for headers here).
 
 ![Export Path Image][004-export-path]
 
