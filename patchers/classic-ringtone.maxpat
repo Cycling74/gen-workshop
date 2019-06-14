@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 0,
-			"revision" : 2,
+			"revision" : 6,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 77.0, 96.0, 588.0, 363.0 ],
+		"rect" : [ 77.0, 96.0, 654.0, 355.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -44,7 +44,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 198.0, 41.0, 58.0, 22.0 ],
+					"patching_rect" : [ 310.5, 41.0, 58.0, 22.0 ],
 					"text" : "loadbang"
 				}
 
@@ -62,14 +62,14 @@
 					"patching_rect" : [ 72.0, 146.0, 48.0, 136.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_shortname" : "live.gain~",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 4,
 							"parameter_mmin" : -70.0,
 							"parameter_longname" : "live.gain~",
 							"parameter_initial_enable" : 1,
 							"parameter_mmax" : 6.0,
-							"parameter_initial" : [ -24 ]
+							"parameter_initial" : [ -24 ],
+							"parameter_shortname" : "live.gain~"
 						}
 
 					}
@@ -125,13 +125,13 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 0,
-							"revision" : 2,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "dsp.gen",
-						"rect" : [ 603.0, 84.0, 823.0, 736.0 ],
+						"rect" : [ 603.0, 84.0, 866.0, 756.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -172,7 +172,7 @@
 							}
 , 							{
 								"box" : 								{
-									"code" : "calculateNextNote(pitches, durations, index, len)\r\n{\r\n\tpitch = peek(pitches, index % len);\r\n\tfrequency = mtof(pitch);\r\n\tduration = peek(durations, index);\r\n\tdurationInSamples = duration * (SAMPLERATE / 7);\r\n\treturn frequency, durationInSamples;\r\n}\r\n\r\nBuffer pitches();\r\nBuffer durations();\r\nHistory isPlaying();\t// are we currently playing\r\nHistory index();\t\t// position in the sequence\r\nHistory freq;\t\t\t// current frequency\r\nHistory noteDuration;\t// how many samples left to play in this note\r\nParam speed(1);\r\n\r\nsequenceLength = dim(pitches);\r\n\r\nsamp = 0;\r\n\r\n// wanna start the sequence?\r\nif (in1) {\r\n\tisPlaying = 1;\r\n\tindex = 0;\t// let's start at the beginning\r\n\tfreq, noteDuration = calculateNextNote(pitches, durations, index, sequenceLength);\r\n}\r\n\r\nif (isPlaying && noteDuration > 0) {\r\n\tsamp = cycle(freq);\r\n\tnoteDuration -= 1;\r\n\t\r\n\tif (noteDuration <= 0) {\r\n\t\tindex += 1;\r\n\t\t\r\n\t\tif (index >= sequenceLength) {\r\n\t\t\tisPlaying = 0;\r\n\t\t} else {\r\n\t\t\tfreq, noteDuration = calculateNextNote(pitches, durations, index, sequenceLength);\r\n\t\t}\r\n\t}\r\n}\r\n\r\nout1 = samp;",
+									"code" : "calculateNextNote(pitches, durations, index, len, speed)\r\n{\r\n\tpitch = peek(pitches, index % len);\r\n\tfrequency = mtof(pitch);\r\n\tduration = peek(durations, index);\r\n\tdurationInSamples = duration * (SAMPLERATE / 7) * speed;\r\n\treturn frequency, durationInSamples;\r\n}\r\n\r\nBuffer pitches();\r\nBuffer durations();\r\nHistory isPlaying();\t// are we currently playing\r\nHistory index();\t\t// position in the sequence\r\nHistory freq;\t\t\t// current frequency\r\nHistory noteDuration;\t// how many samples left to play in this note\r\nParam speed(1);\r\n\r\nsequenceLength = dim(pitches);\r\n\r\nsamp = 0;\r\n\r\n// wanna start the sequence?\r\nif (in1) {\r\n\tisPlaying = 1;\r\n\tindex = 0;\t// let's start at the beginning\r\n\tfreq, noteDuration = calculateNextNote(pitches, durations, index, sequenceLength, speed);\r\n}\r\n\r\nif (isPlaying && noteDuration > 0) {\r\n\tsamp = cycle(freq);\r\n\tnoteDuration -= 1;\r\n\t\r\n\tif (noteDuration <= 0) {\r\n\t\tindex += 1;\r\n\t\t\r\n\t\tif (index >= sequenceLength) {\r\n\t\t\tisPlaying = 0;\r\n\t\t} else {\r\n\t\t\tfreq, noteDuration = calculateNextNote(pitches, durations, index, sequenceLength, speed);\r\n\t\t}\r\n\t}\r\n}\r\n\r\nout1 = samp;",
 									"fontface" : 0,
 									"fontname" : "Menlo",
 									"fontsize" : 12.0,
@@ -181,7 +181,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 26.0, 43.0, 768.43121337890625, 654.0 ]
+									"patching_rect" : [ 26.0, 43.0, 809.43121337890625, 673.0 ]
 								}
 
 							}
@@ -191,7 +191,7 @@
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 26.0, 704.0, 35.0, 22.0 ],
+									"patching_rect" : [ 26.0, 724.0, 35.0, 22.0 ],
 									"text" : "out 1"
 								}
 
@@ -226,7 +226,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 198.0, 159.0, 39.0, 22.0 ],
+					"patching_rect" : [ 310.5, 159.0, 39.0, 22.0 ],
 					"text" : "$2 $1"
 				}
 
@@ -238,7 +238,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "list" ],
-					"patching_rect" : [ 198.0, 132.0, 66.0, 22.0 ],
+					"patching_rect" : [ 310.5, 132.0, 66.0, 22.0 ],
 					"text" : "listfunnel 0"
 				}
 
@@ -250,7 +250,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 364.0, 159.0, 39.0, 22.0 ],
+					"patching_rect" : [ 476.5, 159.0, 39.0, 22.0 ],
 					"text" : "$2 $1"
 				}
 
@@ -262,7 +262,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "list" ],
-					"patching_rect" : [ 364.0, 132.0, 66.0, 22.0 ],
+					"patching_rect" : [ 476.5, 132.0, 66.0, 22.0 ],
 					"text" : "listfunnel 0"
 				}
 
@@ -273,7 +273,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 3,
 					"numoutlets" : 0,
-					"patching_rect" : [ 364.0, 196.0, 109.0, 22.0 ],
+					"patching_rect" : [ 476.5, 196.0, 109.0, 22.0 ],
 					"text" : "poke~ durations"
 				}
 
@@ -284,7 +284,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 3,
 					"numoutlets" : 0,
-					"patching_rect" : [ 198.0, 196.0, 96.0, 22.0 ],
+					"patching_rect" : [ 310.5, 196.0, 96.0, 22.0 ],
 					"text" : "poke~ pitches"
 				}
 
@@ -297,7 +297,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
-					"patching_rect" : [ 364.0, 229.0, 109.0, 35.0 ],
+					"patching_rect" : [ 476.5, 229.0, 109.0, 35.0 ],
 					"text" : "buffer~ durations @samps 13"
 				}
 
@@ -310,7 +310,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 364.0, 87.0, 89.0, 35.0 ],
+					"patching_rect" : [ 476.5, 87.0, 89.0, 35.0 ],
 					"text" : "1 1 2 2 1 1 2 2 1 1 2 2 4"
 				}
 
@@ -323,7 +323,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 198.0, 87.0, 136.0, 35.0 ],
+					"patching_rect" : [ 310.5, 87.0, 136.0, 35.0 ],
 					"text" : "76 74 66 68 73 71 62 64 71 69 61 64 69"
 				}
 
@@ -336,8 +336,20 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
-					"patching_rect" : [ 196.0, 229.0, 98.0, 35.0 ],
+					"patching_rect" : [ 308.5, 229.0, 98.0, 35.0 ],
 					"text" : "buffer~ pitches @samps 13"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"attr" : "speed",
+					"id" : "obj-14",
+					"maxclass" : "attrui",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 122.0, 57.0, 150.0, 22.0 ]
 				}
 
 			}
@@ -367,6 +379,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-2", 0 ],
 					"source" : [ "obj-13", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-13", 0 ],
+					"source" : [ "obj-14", 0 ]
 				}
 
 			}
