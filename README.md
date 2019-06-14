@@ -15,19 +15,26 @@ Materials for the gen~ export workshop
 We will be using JUCE to wrap our exported gen~ code, so there are some quick steps to follow to get everyting set up correctly. 
 1. Download JUCE (see https://juce.com).
 
-Now, if you want to be able to build VSTs as opposed to VST3 or Audio Units, there are a couple more steps. I recommend going through these steps as, from my experience, the most convenient plugin format to work with is the legacy VST2 format.
+2. Download the VST SDK from Steinberg. https://www.steinberg.net/en/company/developers.html; put the unzipped SDK wherever you like. I put it in ~/Documents
 
-2. Download this older, special version of the VST SDK. This package has been altered slightly to build correctly with JUCE. https://cycling74-expo.s3.amazonaws.com/VST_SDK_Special.zip. Once you've downloaded this SDK, unzip it.
+3. The latest version of the VST SDK and the latest version of JUCE do not work together. Yes, I agree, it is a very silly state of affairs. We've included a patch that you can use to make the SDK compatible with JUCE. Pop open your terminal and run the following:
 
-3. Open up the Projucer. In the application menu on the top left, open up Global Paths.
+```
+cd ~/Documents/VST_SDK
+git apply ~/gen-workshop/vst-patch.diff
+```
+
+Note that this assumes that you put the VST_SDK in ~/Documents, and that the path to this repository is ~/gen-workshop
+
+4. Open up the Projucer. In the application menu on the top left, open up Global Paths.
 
 ![Global Paths][007-global-paths]
 
-4. Navigate down to the field for the VST3 SDK path. Browse to the location fo the VST3_SDK folder, within the VST SDK that you downloaded and unzipped in step 2.
+5. Navigate down to the field for the VST3 SDK path. Browse to the location of the VST3_SDK folder, within the VST SDK that you downloaded and unzipped in step 2.
 
 ![VST3 Paths][008-vst3-path]
 
-5. That should be it, the setup should be complete.
+6. That should be it, the setup should be complete.
 
 ## Building a VST/AU using gen~
 In order to build a VST/AU using gen~, a little bit of finesse is required. We make use of the Projucer in order to create an XCode project that builds the appropriate plugin.
