@@ -1,0 +1,25 @@
+diff --git a/VST3_SDK/pluginterfaces/base/coreiids.cpp b/VST3_SDK/pluginterfaces/base/coreiids.cpp
+index d5935044d..9cb631380 100644
+--- a/VST3_SDK/pluginterfaces/base/coreiids.cpp
++++ b/VST3_SDK/pluginterfaces/base/coreiids.cpp
+@@ -14,17 +14,13 @@
+ //------------------------------------------------------------------------
+ 
+ #include "pluginterfaces/base/funknown.h"
+-#include "pluginterfaces/base/ibstream.h"
+-#include "pluginterfaces/base/icloneable.h"
+-#include "pluginterfaces/base/ipluginbase.h"
+ #include "pluginterfaces/base/iupdatehandler.h"
++#include "pluginterfaces/base/icloneable.h"
++#include "pluginterfaces/base/ibstream.h"
+ 
+ //------------------------------------------------------------------------
+ namespace Steinberg {
+-DEF_CLASS_IID (IPluginBase)
+-DEF_CLASS_IID (IPluginFactory)
+-DEF_CLASS_IID (IPluginFactory2)
+-DEF_CLASS_IID (IPluginFactory3)
++
+ 
+ DEF_CLASS_IID (FUnknown)
+ 
